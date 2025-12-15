@@ -23,13 +23,13 @@ src/
     java/
       org/
         paul/
-          application/
-            Main.java
-          entities/
+          flightapi/
+          FlightApiApplication.java
+          model/
             Flight.java
-          repositories/
+          repository/
             IFlightRepository.java
-          services/
+          service/
             FlightService.java
           controllers/
             FlightController.java
