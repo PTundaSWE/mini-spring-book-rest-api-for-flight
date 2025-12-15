@@ -1,0 +1,61 @@
+@startuml
+title Flight API - Class Diagram
+
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+
+package "org.paul.flightapi" {
+
+  package "controller" {
+    class FlightController {
+      +getAllFlights() : List<Flight>
+      +getFlightById(id: Long) : Flight
+      +createFlight(flight: Flight) : Flight
+      +updateFlight(id: Long, flight: Flight) : Flight
+      +deleteFlight(id: Long) : void
+    }
+  }
+
+  package "service" {
+    class FlightService {
+      -flightRepository : IFlightRepository
+      +findAll() : List<Flight>
+      +findById(id: Long) : Flight
+      +create(flight: Flight) : Flight
+      +update(id: Long, flight: Flight) : Flight
+      +delete(id: Long) : void
+    }
+  }
+
+  package "repository" {
+    interface IFlightRepository <<Repository>> {
+    }
+    IFlightRepository ..|> "JpaRepository<Flight, Long>"
+  }
+
+  package "model" {
+    class Flight <<Entity>> {
+      -flightId : Long
+      -departureCity : String
+      -arrivalCity : String
+      +Flight()
+      +Flight(departureCity: String, arrivalCity: String)
+      +getFlightId() : Long
+      +getDepartureCity() : String
+      +setDepartureCity(departureCity: String) : void
+      +getArrivalCity() : String
+      +setArrivalCity(arrivalCity: String) : void
+    }
+  }
+
+  class FlightApiApplication <<SpringBootApplication>> {
+    +main(args: String[]) : void
+  }
+}
+
+' Relationships (layers)
+FlightController --> FlightService : calls
+FlightService --> IFlightRepository : uses
+IFlightRepository --> Flight : manages
+@enduml
