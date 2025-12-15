@@ -39,6 +39,12 @@ src/
 
 ---
 
+## Class Diagram
+
+![Image](https://github.com/PTundaSWE/mini-spring-book-rest-api-for-flight/blob/main/docs/flight-api-Flight_API___Class_Diagram.png)
+
+---
+
 ## Test the API 
 
 1. Run:
